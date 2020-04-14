@@ -1,8 +1,7 @@
 ﻿
-<li class="Blazor-Multi-Select-Item">
-    <strong>@Item.Name</strong>
-    <button @onclick="@DeleteItem">Delete</button>
-</li>
+    <p class="Blazor-Multi-Select-Item">
+        <span>@Item.Name <i  @onclick="@DeleteItem">x</i></span>
+    </p>
 
 @code {
 

@@ -1,6 +1,28 @@
 ﻿.Blazor-Multi-Select {
-    background-color: red;
+    /*TODO*/
 }
 
 .Blazor-Multi-Select-Item {
+    display: inline-block;
+    min-width: 10px;
+    padding: 4px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 2;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #0024ff;
+    border-radius: 10px;
 }
+
+    .Blazor-Multi-Select-Item i {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 1;
+        padding: 1px 3px;
+        cursor: pointer;
+    }
