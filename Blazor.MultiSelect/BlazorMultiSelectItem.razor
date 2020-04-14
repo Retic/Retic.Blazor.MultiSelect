@@ -1,0 +1,23 @@
+﻿
+<li class="Blazor-Multi-Select-Item">
+    <strong>@Item.Name</strong>
+    <button @onclick="@DeleteItem">Delete</button>
+</li>
+
+@code {
+
+    [Parameter]
+    public MultiSelectItem Item { get; set; }
+
+    [Parameter]
+    public EventCallback<MultiSelectItem> OnDelete { get; set; }
+
+    private void DeleteItem()
+    {
+        if (OnDelete.HasDelegate)
+        {
+            OnDelete.InvokeAsync(Item);
+        }
+    }
+}
+

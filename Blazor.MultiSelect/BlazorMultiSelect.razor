@@ -1,0 +1,32 @@
+﻿
+<div class="Blazor-Multi-Select">
+
+    @foreach (var item in Items)
+    {
+        <Blazor.MultiSelect.BlazorMultiSelectItem Item="@item" OnDelete="@DeleteItem"></Blazor.MultiSelect.BlazorMultiSelectItem>
+    }
+
+    <input type="text" @bind="newItem.Name" @bind:event="oninput" @onkeypress="@AddItem" />
+</div>
+
+@code {
+
+    [Parameter]
+    public List<MultiSelectItem> Items { get; set; }
+
+    private MultiSelectItem newItem = new MultiSelectItem();
+
+    private void DeleteItem(MultiSelectItem item)
+    {
+        Items.Remove(item);
+    }
+
+    private void AddItem(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            Items.Add(newItem);
+            newItem = new MultiSelectItem();
+        }
+    }
+}

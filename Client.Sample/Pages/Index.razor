@@ -1,0 +1,15 @@
+﻿@page "/"
+
+@using Blazor.MultiSelect.Models;
+@using Blazor.MultiSelect;
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<BlazorMultiSelect Items="_items"></BlazorMultiSelect>
+
+
+@code {
+    private List<MultiSelectItem> _items = new List<MultiSelectItem>();
+}
