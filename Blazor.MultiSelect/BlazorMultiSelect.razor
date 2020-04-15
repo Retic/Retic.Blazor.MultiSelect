@@ -1,19 +1,35 @@
-﻿<div class="Blazor-Multi-Select">
-    <input type="text" @bind="newItem.Name" @bind:event="oninput" @onkeypress="@AddItem" />
-    <div class="Blazor-Multi-Select-Items">
-        @foreach (var item in Items)
-        {
-            <Blazor.MultiSelect.BlazorMultiSelectItem Item="@item" OnDelete="@DeleteItem"></Blazor.MultiSelect.BlazorMultiSelectItem>
-        }
+﻿<div class="blazor-multi-select open">
+    <div class="blazor-multi-select-display">
+        <div class="blazor-multi-select-container">
+            @foreach (var item in Items)
+            {
+                <Blazor.MultiSelect.BlazorMultiSelectItem Item="@item" OnDelete="@DeleteItem"></Blazor.MultiSelect.BlazorMultiSelectItem>
+            }
+        </div>
+        <input class="blazor-multi-select-input" @bind-value="@searchTerm" @bind-value:event="oninput" @onkeyup="@Search" />
     </div>
-
-
+    <div class="blazor-multi-select-options">
+        <div>
+            @foreach (var item in SearchResults)
+            {
+                <Blazor.MultiSelect.BlazorMultiSelectOptionItem Item="@item" OnSelect="@AddItem"></Blazor.MultiSelect.BlazorMultiSelectOptionItem>
+            }
+        </div>
+    </div>
 </div>
 
 @code {
 
     [Parameter]
     public List<MultiSelectItem> Items { get; set; }
+
+    [Parameter]
+    public List<MultiSelectItem> Options { get; set; }
+
+
+    private List<MultiSelectItem> SearchResults = new List<MultiSelectItem>();
+
+    private string searchTerm = "";
 
     private MultiSelectItem newItem = new MultiSelectItem();
 
@@ -22,12 +38,34 @@
         Items.Remove(item);
     }
 
-    private void AddItem(KeyboardEventArgs e)
+    private void Search(KeyboardEventArgs e)
     {
+        if (!string.IsNullOrEmpty(searchTerm))
+            SearchResults = Options.Where(xt => xt.Name.Contains(searchTerm)).ToList();
+
         if (e.Key == "Enter")
         {
-            Items.Add(newItem);
-            newItem = new MultiSelectItem();
+            if (SearchResults.Any())
+            {
+                AddItem(SearchResults.FirstOrDefault());
+            }
+            else
+            {
+                AddItem(new MultiSelectItem { Name = searchTerm });
+            }
+
+            searchTerm = "";
+        }
+
+        if(e.Key == "Backspace" && searchTerm.Count() == 0)
+        {
+            DeleteItem(Items.LastOrDefault());
         }
     }
+
+    private void AddItem(MultiSelectItem item)
+    {
+        Items.Add(item);
+    }
+
 }

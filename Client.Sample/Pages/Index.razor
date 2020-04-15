@@ -3,13 +3,25 @@
 @using Blazor.MultiSelect.Models;
 @using Blazor.MultiSelect;
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
-
-<BlazorMultiSelect Items="_items"></BlazorMultiSelect>
+<BlazorMultiSelect Items="_items" Options="_options"></BlazorMultiSelect>
 
 
 @code {
     private List<MultiSelectItem> _items = new List<MultiSelectItem>();
+    private List<MultiSelectItem> _options = new List<MultiSelectItem>();
+
+
+    protected override void OnInitialized()
+    {
+        _options.Add(new MultiSelectItem { Name = "Dean" });
+        _options.Add(new MultiSelectItem { Name = "James" });
+        _options.Add(new MultiSelectItem { Name = "Sally" });
+        _options.Add(new MultiSelectItem { Name = "Kim" });
+        _options.Add(new MultiSelectItem { Name = "Albert" });
+        _options.Add(new MultiSelectItem { Name = "Devon" });
+        _options.Add(new MultiSelectItem { Name = "Sam" });
+        _options.Add(new MultiSelectItem { Name = "Bill" });
+    }
+
 }

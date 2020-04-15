@@ -1,37 +1,136 @@
-﻿.Blazor-Multi-Select {
-    padding: 10px;
-    margin: 10px;
+﻿
+.blazor-multi-select {
+    position: relative;
+    user-select: none;
 }
 
-    .Blazor-Multi-Select input {
-        width: 100%;
+    .blazor-multi-select.open {
+        z-index: 100;
     }
 
-    .Blazor-Multi-Select-Items {
-        padding: 5px;
-    }
+        .blazor-multi-select.open .blazor-multi-select-screen {
+            z-index: 100;
+            display: block;
+        }
 
-.Blazor-Multi-Select-Item {
-    display: inline-block;
-    min-width: 10px;
-    padding: 4px 7px;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 2;
-    color: #fff;
+        .blazor-multi-select.open .blazor-multi-select-options {
+            z-index: 200;
+            max-height: 200px;
+        }
+
+        .blazor-multi-select.open .blazor-multi-select-display {
+            z-index: 200;
+        }
+
+
+.blazor-multi-select-container {
+    display: inline;
+}
+
+.blazor-multi-select-input {
+    border: none;
+    outline: none;
+    vertical-align: top;
+    line-height: 3;
+}
+
+.link {
     text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    background-color: #0024ff;
-    border-radius: 10px;
+    margin: 20px 0px;
 }
 
-    .Blazor-Multi-Select-Item i {
-        background-color: white;
-        color: black;
-        border-radius: 10px;
-        text-align: center;
-        line-height: 1;
-        padding: 1px 3px;
-        cursor: pointer;
+
+.blazor-multi-select .blazor-multi-select-display {
+    position: relative;
+    padding: 0px 20px 5px 5px;
+    border: 4px solid;
+    width: 100%;
+    z-index: 1;
+    margin: 0px;
+    font-size: 16px;
+    min-height: 58px;
+}
+
+    .blazor-multi-select .blazor-multi-select-display .blazor-multi-select-item {
+        position: relative;
+        display: inline-block;
+        border: 2px solid #333;
+        margin: 5px 5px -4px 0px;
+        padding: 0px 25px 0px 10px;
+        overflow: hidden;
+        height: 40px;
+        line-height: 36px;
     }
+
+        .blazor-multi-select .blazor-multi-select-display .blazor-multi-select-item .btnclose {
+            color: #444;
+            position: absolute;
+            font-size: 16px;
+            right: 5px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+            .blazor-multi-select .blazor-multi-select-display .blazor-multi-select-item .btnclose:hover {
+                opacity: 0.75;
+            }
+
+        .blazor-multi-select .blazor-multi-select-display .blazor-multi-select-item.remove {
+            -webkit-animation: removeSelected 0.2s, hide 1s infinite;
+            animation: removeSelected 0.2s, hide 1s infinite;
+            -webkit-animation-delay: 0s, 0.2s;
+            animation-delay: 0s, 0.2s;
+        }
+
+        .blazor-multi-select .blazor-multi-select-display .blazor-multi-select-item.add {
+            -webkit-animation: addSelected 0.2s;
+            animation: addSelected 0.2s;
+        }
+
+        .blazor-multi-select .blazor-multi-select-display .blazor-multi-select-item.hide {
+            display: none;
+        }
+
+
+.blazor-multi-select .blazor-multi-select-options {
+    background: #444;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    width: 100%;
+    max-height: 0px;
+    overflow-y: auto;
+    transition: all 0.25s linear;
+    z-index: 1;
+}
+
+    .blazor-multi-select .blazor-multi-select-options a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        padding: 0px 20px;
+        color: white;
+        position: relative;
+        max-height: 40px;
+        transition: all 1s;
+        overflow: hidden;
+    }
+
+        .blazor-multi-select .blazor-multi-select-options a:hover {
+            background: #465;
+            cursor: pointer;
+        }
+
+        .blazor-multi-select .blazor-multi-select-options a.remove {
+            -webkit-animation: removeOption 0.2s;
+            animation: removeOption 0.2s;
+            max-height: 0px;
+        }
+
+        .blazor-multi-select .blazor-multi-select-options a.add {
+            -webkit-animation: addOption 0.2s;
+            animation: addOption 0.2s;
+        }
+
+        .blazor-multi-select .blazor-multi-select-options a.hide {
+            display: none;
+        }

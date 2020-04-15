@@ -1,0 +1,20 @@
+﻿
+<a @onclick="@SelectItem">@Item.Name</a>
+
+@code {
+
+    [Parameter]
+    public MultiSelectItem Item { get; set; }
+
+    [Parameter]
+    public EventCallback<MultiSelectItem> OnSelect { get; set; }
+
+    private void SelectItem()
+    {
+        if (OnSelect.HasDelegate)
+        {
+            OnSelect.InvokeAsync(Item);
+        }
+    }
+}
+

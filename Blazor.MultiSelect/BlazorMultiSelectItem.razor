@@ -1,7 +1,4 @@
-﻿
-    <p class="Blazor-Multi-Select-Item">
-        <span>@Item.Name <i  @onclick="@DeleteItem">x</i></span>
-    </p>
+﻿<span class="blazor-multi-select-item" @onclick="@DeleteItem">@Item.Name<i class="material-icons btnclose">x</i></span>
 
 @code {
 
