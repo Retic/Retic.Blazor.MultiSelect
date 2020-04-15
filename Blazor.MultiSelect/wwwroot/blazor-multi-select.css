@@ -1,6 +1,15 @@
 ﻿.Blazor-Multi-Select {
-    /*TODO*/
+    padding: 10px;
+    margin: 10px;
 }
+
+    .Blazor-Multi-Select input {
+        width: 100%;
+    }
+
+    .Blazor-Multi-Select-Items {
+        padding: 5px;
+    }
 
 .Blazor-Multi-Select-Item {
     display: inline-block;

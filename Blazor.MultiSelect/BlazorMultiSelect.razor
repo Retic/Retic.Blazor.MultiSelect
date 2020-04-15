@@ -1,11 +1,13 @@
 ﻿<div class="Blazor-Multi-Select">
-
-    @foreach (var item in Items)
-    {
-        <Blazor.MultiSelect.BlazorMultiSelectItem Item="@item" OnDelete="@DeleteItem"></Blazor.MultiSelect.BlazorMultiSelectItem>
-    }
-
     <input type="text" @bind="newItem.Name" @bind:event="oninput" @onkeypress="@AddItem" />
+    <div class="Blazor-Multi-Select-Items">
+        @foreach (var item in Items)
+        {
+            <Blazor.MultiSelect.BlazorMultiSelectItem Item="@item" OnDelete="@DeleteItem"></Blazor.MultiSelect.BlazorMultiSelectItem>
+        }
+    </div>
+
+
 </div>
 
 @code {
