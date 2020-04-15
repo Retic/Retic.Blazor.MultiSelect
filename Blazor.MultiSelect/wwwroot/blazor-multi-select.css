@@ -23,6 +23,17 @@
         }
 
 
+.blazor-multi-select-close-icon {
+    background-color: black;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+    color: #fefefe;
+    margin-left: 10px;
+}
+
+
 .blazor-multi-select-container {
     display: inline;
 }
